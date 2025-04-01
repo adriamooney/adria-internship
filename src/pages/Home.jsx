@@ -5,11 +5,13 @@ import Landing from "../components/home/Landing";
 import LandingIntro from "../components/home/LandingIntro";
 import NewItems from "../components/home/NewItems";
 import TopSellers from "../components/home/TopSellers";
+import Slider from "react-slick";
+
 
 const Home = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, []);
 
   return (
     <div id="wrapper">
@@ -17,8 +19,8 @@ const Home = () => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections />
-        <NewItems />
+        <HotCollections Slider={Slider}/>
+        <NewItems Slider={Slider}/>
         <TopSellers />
         <BrowseByCategory />
       </div>

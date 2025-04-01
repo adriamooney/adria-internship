@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import AuthorImage from "../../images/author_thumbnail.jpg";
-import nftImage from "../../images/nftImage.jpg";
 import axios from "axios";
-import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./HotCollections.css";
 
-const HotCollections = () => {
+const HotCollections = ({Slider}) => {
   const [hotCollection, setHotCollection] = useState([]);
   const settings = {
     dots: false,
@@ -101,16 +98,16 @@ const HotCollections = () => {
             </Slider>
           ) : (
             <Slider {...settings}> {new Array(4).fill(0).map((_, index) => (
-                <div className="nft_coll">
+                <div className="nft_coll" key={index}>
                   <div className="nft_wrap skeleton-box" style={{width: '100%',height:'174px'}}>
                   </div>
-                  <div className="nft_coll_pp skeleton-box" style={{'border-radius': '50%', width: '55px', height: '55px', 'overflow': 'visible'}}>
+                  <div className="nft_coll_pp skeleton-box" style={{borderRadius: '50%', width: '55px', height: '55px', 'overflow': 'visible'}}>
                     <i className="fa fa-check"></i>
                   </div>
-                  <div style={{display:'flex', 'flex-direction': 'column', 'align-items': 'center'}}>
+                  <div style={{display:'flex', flexDirection: 'column', alignItems: 'center'}}>
                     <div className="nft_coll_info skeleton-box" style={{width:'80px'}}>
                     </div>
-                    <div class="skeleton-box" style={{width:'40px', 'margin-top': '8px', 'margin-bottom': '16px'}}></div>
+                    <div className="skeleton-box" style={{width:'40px', marginTop: '8px', marginBottom: '16px'}}></div>
                   </div>
                 </div>
             ))}</Slider>
