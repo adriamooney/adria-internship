@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import CountDown from './CountDown';
 
-function Card({item}) {
+function Card({item, author}) {
   return (
     <div className="nft__item">
       <div className="author_list_pp">
@@ -11,7 +11,7 @@ function Card({item}) {
           data-bs-toggle="tooltip"
           data-bs-placement="top"
         >
-          <img className="lazy" src={item.authorImage} alt="" />
+          <img className="lazy" src={item.authorImage || author.authorImage} alt="" />
           <i className="fa fa-check"></i>
         </Link>
       </div>

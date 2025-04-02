@@ -24,7 +24,7 @@ const Explore = () => {
     setTimeout(() => {
     //window.scrollTo(0, 0);
     fetchExporeItems('');
-  }, 10000); //set time out to view skeleton loading
+  }, 500); //set time out to view skeleton loading
   }, []);
 
   return (
