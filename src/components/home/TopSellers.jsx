@@ -54,7 +54,7 @@ const TopSellers = () => {
                     <div className="pp-author skeleton-box"  style={{width: '55px',height:'55px',borderRadius: '50%'}}></div>
                       <i className="fa fa-check"></i>
                   </div>
-                  <div class="author_list_info">
+                  <div className="author_list_info">
                     <div className="skeleton-box" style={{width: '100px',height:'20px', marginBottom: '8px', display: 'block'}}></div>
                     <div className="skeleton-box" style={{width: '45px',height:'20px'}}></div>
                   </div>
