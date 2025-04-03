@@ -13,7 +13,6 @@ const Explore = () => {
       `https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`
     );
     setExploreItems(data);
-    console.log(exploreItems);
   }
 
   function changeFilter(filter) {

@@ -3,38 +3,8 @@ import axios from "axios";
 import Card from "../UI/Card";
 import SkeletonCard from "../UI/SkeletonCard";
 
-const NewItems = ({ Slider }) => {
+const NewItems = ({ Slider, sliderSettings }) => {
   const [newItems, setNewItems] = useState([]);
-  const newItemsSettings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    centerMode: false,
-    mobileFirst: true,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
 
   async function fetchNewItems() {
     const { data } = await axios.get(
@@ -46,7 +16,7 @@ const NewItems = ({ Slider }) => {
   useEffect(() => {
     setTimeout(() => {
       fetchNewItems();
-    }, 5000); //set time out to view skeleton loading
+    }, 300); //set time out to view skeleton loading
   }, []);
 
   return (
@@ -59,7 +29,7 @@ const NewItems = ({ Slider }) => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <Slider {...newItemsSettings}>
+          <Slider {...sliderSettings}>
             {newItems && newItems.length > 0
               ? newItems.map((item) => {
                   return <Card item={item} key={item.id}/>;

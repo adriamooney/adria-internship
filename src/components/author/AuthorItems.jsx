@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-
 import Card from "../UI/Card";
 
 const AuthorItems = ({item, author}) => {

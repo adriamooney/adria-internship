@@ -1,42 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./HotCollections.css";
 
-const HotCollections = ({Slider}) => {
+const HotCollections = ({Slider, sliderSettings}) => {
   const [hotCollection, setHotCollection] = useState([]);
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    centerMode: false,
-    mobileFirst: true,
-    responsive: [
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 600,
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
+  
 
   async function fetchHotCollection() {
     const { data } = await axios.get(
@@ -48,7 +16,7 @@ const HotCollections = ({Slider}) => {
   useEffect(() => {
     setTimeout(() => {
       fetchHotCollection();
-    }, 5000); //set time out to view skeleton loading
+    }, 300); //set time out to view skeleton loading
   }, []);
 
   return (
@@ -63,7 +31,7 @@ const HotCollections = ({Slider}) => {
           </div>
 
           {hotCollection && hotCollection.length > 0 ? (
-            <Slider {...settings}>
+            <Slider {...sliderSettings}>
               {hotCollection.map((item, index) => {
                 return (
                   <div className="nft_coll" key={index}>
@@ -97,7 +65,7 @@ const HotCollections = ({Slider}) => {
               })}
             </Slider>
           ) : (
-            <Slider {...settings}> {new Array(4).fill(0).map((_, index) => (
+            <Slider {...sliderSettings}> {new Array(4).fill(0).map((_, index) => (
                 <div className="nft_coll" key={index}>
                   <div className="nft_wrap skeleton-box" style={{width: '100%',height:'174px'}}>
                   </div>
