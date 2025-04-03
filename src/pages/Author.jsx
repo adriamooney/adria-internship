@@ -72,11 +72,7 @@ const Author = () => {
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
-                          {author.authorName ? (
-                            author.authorName
-                          ) : (
-                            <Skeleton width="160px" height="24px" />
-                          )}
+                          { author.authorName || <Skeleton width="160px" height="24px" /> }
                           <span className="profile_username">
                             {author.tag ? (
                               `@'${author.tag}`

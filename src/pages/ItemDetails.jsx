@@ -1,12 +1,29 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import EthImage from "../images/ethereum.svg";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
-import nftImage from "../images/nftImage.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
+import Skeleton from "../components/UI/Skeleton";
 
 const ItemDetails = () => {
+
+  const { id } = useParams();
+  const [item, setItem] = useState({});
+
+  async function fetchItem() {
+    const { data } = await axios.get(
+      `https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${id}`
+    );
+    setItem(data);
+    console.log(data);
+  }
+
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    setTimeout(() => {
+      fetchItem();
+    }, 300);
+    
   }, []);
 
   return (
@@ -17,30 +34,29 @@ const ItemDetails = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-6 text-center">
-                <img
-                  src={nftImage}
+                {item.nftImage ? <img
+                  src={item.nftImage}
                   className="img-fluid img-rounded mb-sm-30 nft-image"
                   alt=""
-                />
+                />: <Skeleton width="495px" height="532px" /> }
+               
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  <h2>Rainbow Style #194</h2>
+                  <h2>{item.title || <Skeleton width="260px" height="40px" />}</h2>
 
                   <div className="item_info_counts">
                     <div className="item_info_views">
                       <i className="fa fa-eye"></i>
-                      100
+                      {item.views }
                     </div>
                     <div className="item_info_like">
                       <i className="fa fa-heart"></i>
-                      74
+                      {item.likes}
                     </div>
                   </div>
                   <p>
-                    doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                    illo inventore veritatis et quasi architecto beatae vitae
-                    dicta sunt explicabo.
+                    {item.description || <Skeleton width="360px" height="120px" />}
                   </p>
                   <div className="d-flex flex-row">
                     <div className="mr40">
@@ -48,12 +64,12 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                          {item.ownerImage  ? <img className="lazy" src={item.ownerImage} alt="" /> : <Skeleton width="50px" height="50px" borderRadius="50%" />}
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to="/author">{item.ownerName || <Skeleton width="120px" height="18px" />}</Link>
                         </div>
                       </div>
                     </div>
@@ -65,12 +81,12 @@ const ItemDetails = () => {
                       <div className="item_author">
                         <div className="author_list_pp">
                           <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                          {item.creatorImage ? <img className="lazy" src={item.creatorImage} alt="" /> : <Skeleton width="50px" height="50px" borderRadius="50%" />} 
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to="/author">{item.creatorName || <Skeleton width="120px" height="18px" />}</Link>
                         </div>
                       </div>
                     </div>
@@ -78,7 +94,7 @@ const ItemDetails = () => {
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>1.85</span>
+                      <span>{item.price || <Skeleton width="80px" height="18px" />}</span>
                     </div>
                   </div>
                 </div>
