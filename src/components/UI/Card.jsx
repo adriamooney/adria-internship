@@ -7,7 +7,7 @@ function Card({item, author}) {
     <div className="nft__item">
       <div className="author_list_pp">
         <Link
-          to={`/author/${item.authorId}`}
+          to={`/author/${item.authorId || author.authorId}`}
           data-bs-toggle="tooltip"
           data-bs-placement="top"
         >

@@ -62,13 +62,13 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${item.ownerId}`}>
                           {item.ownerImage  ? <img className="lazy" src={item.ownerImage} alt="" /> : <Skeleton width="50px" height="50px" borderRadius="50%" />}
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{item.ownerName || <Skeleton width="120px" height="18px" />}</Link>
+                          <Link to={`/author/${item.ownerId}`}>{item.ownerName || <Skeleton width="120px" height="18px" />}</Link>
                         </div>
                       </div>
                     </div>
@@ -79,13 +79,13 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
+                          <Link to={`/author/${item.creatorId}`}>
                           {item.creatorImage ? <img className="lazy" src={item.creatorImage} alt="" /> : <Skeleton width="50px" height="50px" borderRadius="50%" />} 
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">{item.creatorName || <Skeleton width="120px" height="18px" />}</Link>
+                          <Link to={`/author/${item.creatorId}`}>{item.creatorName || <Skeleton width="120px" height="18px" />}</Link>
                         </div>
                       </div>
                     </div>
